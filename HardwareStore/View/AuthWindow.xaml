@@ -1,0 +1,39 @@
+﻿<Window x:Class="HardwareStore.View.AuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HardwareStore.View"
+        xmlns:viewmodel="clr-namespace:HardwareStore.ViewModel"
+        mc:Ignorable="d"
+        MinHeight="400" MinWidth="400"
+       WindowStartupLocation="CenterScreen"
+        Title="Store:Auth" Height="400" Width="350">
+    <Window.DataContext>
+        <viewmodel:AuthViewModel/>
+    </Window.DataContext>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="1" Content="Hardware Store" VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Center" FontSize="20" Padding="10"/>
+        <StackPanel
+            Margin="15"
+            Grid.Row="2">
+            <Label Content="Login"/>
+            <TextBox Text="{Binding Login}"/>
+        </StackPanel>
+        <StackPanel
+            Grid.Row="3"
+            Margin="15">
+            <Label Content="Password"/>
+            <PasswordBox x:Name="pbPassword"/>
+        </StackPanel>
+        <Button Grid.Row="4" Width="200" Height="24" Margin="15" Content="{Binding ButtonSignInString}" Click="SignIn"/>
+    </Grid>
+</Window>
