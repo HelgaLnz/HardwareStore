@@ -13,8 +13,9 @@ namespace HardwareStore.Core
         private const string Url = "https://localhost:7077/api/";
         private const string UrlAuth = Url + "Auth";
         private const string UrlGetUser = Url + "User";
+        private const string UrlGetProduct = Url + "Product";
 
-        private static HttpClient s_client;
+        private static readonly HttpClient s_client;
 
         static HttpHelper()
         {
@@ -24,14 +25,28 @@ namespace HardwareStore.Core
         public static async Task<User> AuthAsync(AuthRequest auth)
         {
             var response = await s_client.PostAsync(UrlAuth,
-                 new StringContent(JsonConvert.SerializeObject(auth), Encoding.UTF8, "application/json"));
+                new StringContent(JsonConvert.SerializeObject(auth), Encoding.UTF8, "application/json"));
             return JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync());
         }
 
-        public static async Task<IEnumerable<User>> GetUserAsync()
+        public static async Task<IEnumerable<User>> GetUsersAsync()
         {
             var response = await s_client.GetAsync(UrlGetUser);
             return JsonConvert.DeserializeObject<IEnumerable<User>>(await response.Content.ReadAsStringAsync());
+        }
+
+        public static async Task<IEnumerable<Product>> GetProductsAsync()
+        {
+            try
+            {
+                var response = await s_client.GetStringAsync(UrlGetProduct);
+                return JsonConvert.DeserializeObject<IEnumerable<Product>>(response.ToString());
+            }
+            catch (System.Exception ex)
+            {
+                var a = ";";
+                throw;
+            }
         }
     }
 }

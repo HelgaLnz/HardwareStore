@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HardwareStore.ViewModel
+﻿namespace HardwareStore.ViewModel
 {
-    internal class DashboardViewModel:UserViewModel
+    internal class DashboardViewModel : ProductViewModel
     {
-        
+
     }
 }

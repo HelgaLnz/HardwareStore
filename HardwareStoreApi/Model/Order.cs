@@ -19,11 +19,11 @@ public partial class Order
 
     public string OrderCode { get; set; } = null!;
 
+    public virtual ICollection<OrderHasProduct> OrderHasProducts { get; } = new List<OrderHasProduct>();
+
     public virtual PickupPoint OrderPickupPointNavigation { get; set; } = null!;
 
     public virtual OrderStatus OrderStatusNavigation { get; set; } = null!;
 
     public virtual User? User { get; set; }
-
-    public virtual ICollection<Product> ProductArticleNumbers { get; } = new List<Product>();
 }

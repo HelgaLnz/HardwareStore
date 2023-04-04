@@ -11,6 +11,15 @@
         <viewmodel:DashboardViewModel/>
     </Window.DataContext>
     <Grid>
-        
+    <ListView x:Name="dgUser" ItemsSource="{Binding Products}">
+        <ListView.View>
+        <GridView>
+            <GridView.Columns>
+            <GridViewColumn Header="ProductCost" DisplayMemberBinding="{Binding ProductName}"/>
+            <GridViewColumn Header="ProductName" DisplayMemberBinding="{Binding Category.CategoryValue}"/>
+            </GridView.Columns>
+        </GridView>
+        </ListView.View>
+    </ListView>
     </Grid>
 </Window>

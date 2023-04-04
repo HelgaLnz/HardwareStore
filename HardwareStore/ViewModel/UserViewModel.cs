@@ -17,9 +17,9 @@ namespace HardwareStore.ViewModel
 
         public UserViewModel()
         {
-            Task.Run(async () => 
-            { 
-                _users = new ObservableCollection<User>(await HttpHelper.GetUserAsync());
+            Task.Run(async () =>
+            {
+                Users = new ObservableCollection<User>(await HttpHelper.GetUsersAsync());
             });
         }
     }

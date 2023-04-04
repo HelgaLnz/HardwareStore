@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Text.Json.Serialization;
 
 namespace HardwareStoreApi.Model;
 
@@ -11,19 +10,31 @@ public partial class Product
 
     public string ProductDescription { get; set; } = null!;
 
-    public string ProductCategory { get; set; } = null!;
+    [JsonIgnore]
+    public int CategoryId { get; set; }
 
-    public byte[] ProductPhoto { get; set; } = null!;
+    public byte[]? ProductPhoto { get; set; }
 
-    public string ProductManufacturer { get; set; } = null!;
+    [JsonIgnore]
+    public int ProductManufacturerId { get; set; }
 
     public decimal ProductCost { get; set; }
 
-    public byte? ProductDiscountAmount { get; set; }
+    public byte ProductDiscountAmount { get; set; }
+
+    public byte ProductDiscountCurrent { get; set; }
 
     public int ProductQuantityInStock { get; set; }
 
-    public string ProductStatus { get; set; } = null!;
+    [JsonIgnore]
+    public int ProductUnitId { get; set; }
 
-    public virtual ICollection<Order> Orders { get; } = new List<Order>();
+    public virtual Category Category { get; set; } = null!;
+
+    [JsonIgnore]
+    public virtual ICollection<OrderHasProduct> OrderHasProducts { get; } = new List<OrderHasProduct>();
+
+    public virtual Manufacturer ProductManufacturer { get; set; } = null!;
+
+    public virtual Unit ProductUnit { get; set; } = null!;
 }
