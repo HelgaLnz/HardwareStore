@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HardwareStore.View"
         xmlns:viewmodel="clr-namespace:HardwareStore.ViewModel"
-        mc:Ignorable="d"
-        Title="DashboardWindow" Height="450" Width="800">
+        mc:Ignorable="d" MinHeight="500" MinWidth="800"
+        Title="Dashboard:product" Height="auto" Width="auto" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <viewmodel:DashboardViewModel/>
     </Window.DataContext>
@@ -15,8 +15,20 @@
         <ListView.View>
         <GridView>
             <GridView.Columns>
-            <GridViewColumn Header="ProductCost" DisplayMemberBinding="{Binding ProductName}"/>
-            <GridViewColumn Header="ProductName" DisplayMemberBinding="{Binding Category.CategoryValue}"/>
+                <GridViewColumn Header="Name" 
+                                DisplayMemberBinding="{Binding ProductName}" Width="150"/>
+                <GridViewColumn Header="Cost" 
+                                DisplayMemberBinding="{Binding ProductCost, StringFormat={}{0} руб.}" Width="100"/>
+                <GridViewColumn Header="Category" 
+                                DisplayMemberBinding="{Binding Category.CategoryValue}" Width="240"/>
+                <GridViewColumn Header="Description" 
+                                DisplayMemberBinding="{Binding ProductDescription}" Width="200"/>
+                <GridViewColumn Header="Manufacturer" 
+                                DisplayMemberBinding="{Binding ProductManufacturer.ManufacturerName}" Width="100"/>
+                <GridViewColumn Header="Unit" 
+                                DisplayMemberBinding="{Binding ProductUnit.UnitValue}" Width="100"/>
+                <GridViewColumn Header="Amount"
+                                DisplayMemberBinding="{Binding ProductQuantityInStock, StringFormat={}{0} шт.}"/>
             </GridView.Columns>
         </GridView>
         </ListView.View>

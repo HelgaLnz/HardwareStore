@@ -19,14 +19,14 @@ namespace HardwareStoreApi.Controllers
 
         // GET: api/<ProductController>
         [HttpGet]
-        public ActionResult<IEnumerable<Product>?> Get()
+        public async Task<ActionResult<IEnumerable<Product>?>> Get()
         {
             try
             {
-                return Ok(_context.Products
+                return Ok(await _context.Products
                     .Include(p => p.ProductManufacturer)
                     .Include(p => p.ProductUnit)
-                    .Include(p => p.Category));
+                    .Include(p => p.Category).ToListAsync());
             }
             catch (Exception)
             {
